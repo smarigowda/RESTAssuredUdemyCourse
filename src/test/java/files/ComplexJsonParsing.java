@@ -1,6 +1,7 @@
 package files;
 
 import io.restassured.path.json.JsonPath;
+import org.testng.Assert;
 
 import java.util.Arrays;
 
@@ -24,5 +25,26 @@ public class ComplexJsonParsing {
             System.out.println(title);
             System.out.println(price);
         }
+
+        // Print the number of copies sold for a specific course
+        String courserTitle = "Cypress";
+        int copiesSold = 0;
+        for(int i=0; i< coursesCount; i++) {
+            if(js.getString(String.format("courses[%d].title", i)).equals(courserTitle)) {
+                copiesSold = js.get(String.format("courses[%d].copies", i));
+                break;
+            }
+        }
+        System.out.println(String.format("Copies sold = %d", copiesSold));
+
+        // Verify if purchase amount matches the sum of course prices
+        int totalPriceOfCourses = 0;
+        for(int i=0; i< coursesCount; i++) {
+            int coursePrice = js.getInt(String.format("courses[%d].price", i));
+            int numCopies = js.getInt(String.format("courses[%d].copies", i));
+            totalPriceOfCourses = totalPriceOfCourses + ( coursePrice * numCopies );
+        }
+        System.out.println(String.format("sum of prices of all courses = %d", totalPriceOfCourses));
+        Assert.assertEquals(totalPriceOfCourses, purchaseAmount);
     }
 }
