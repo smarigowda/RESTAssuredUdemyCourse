@@ -46,4 +46,12 @@ public class PayLoad {
                 "]\n" +
                 "}";
     }
+    public static String AddBook() {
+        return "{\n" +
+                "    \"name\": \"Learn Appium Automation with Java\",\n" +
+                "    \"isbn\": \"ajnh\",\n" +
+                "    \"aisle\": \"227\",\n" +
+                "    \"author\": \"John foe\"\n" +
+                "}";
+    }
 }
