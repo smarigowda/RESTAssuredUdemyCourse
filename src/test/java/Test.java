@@ -26,7 +26,7 @@ public class Test {
                         "}")
                 .when()
                     .post("/maps/api/place/add/json")
-                .then()
+                .then().log().all()
                     .assertThat().statusCode(200);
     }
 }
