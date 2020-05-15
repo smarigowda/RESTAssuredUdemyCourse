@@ -49,7 +49,7 @@ public class PayLoad {
     public static String AddBook() {
         return "{\n" +
                 "    \"name\": \"Learn Appium Automation with Java\",\n" +
-                "    \"isbn\": \"ajnh\",\n" +
+                "    \"isbn\": \"ajnl\",\n" +
                 "    \"aisle\": \"227\",\n" +
                 "    \"author\": \"John foe\"\n" +
                 "}";
