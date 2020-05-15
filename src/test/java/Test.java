@@ -1,6 +1,8 @@
 import files.PayLoad;
+import files.ReusableMethods;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
+import org.testng.Assert;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
@@ -25,7 +27,7 @@ public class Test {
                     .extract().response().asString();
 
         System.out.println("Response is:\n" + response);
-        JsonPath jsonResponse = new JsonPath(response);
+        JsonPath jsonResponse = ReusableMethods.rawToJson(response);
         String placeId = jsonResponse.getString("place_id");
         System.out.println(placeId);
 
@@ -44,11 +46,15 @@ public class Test {
                     .assertThat().statusCode(200).body("msg", equalTo("Address successfully updated"));
 
         // Get the updated place and verify that the address is updated
-        given().log().all()
+        String updatedResponse  = given().log().all()
                 .queryParam("key", "qaclick123").queryParam("place_id", placeId)
                 .when()
                     .get("/maps/api/place/get/json")
                 .then().log().all()
-                    .assertThat().statusCode(200).body("address", equalTo(newAddress));
+                    .assertThat().statusCode(200).extract().response().asString();
+
+        JsonPath updatedResponseJson = ReusableMethods.rawToJson(updatedResponse);
+        String actualAddress = updatedResponseJson.getString("address");
+        Assert.assertEquals(actualAddress, newAddress);
     }
 }
