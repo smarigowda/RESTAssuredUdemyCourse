@@ -5,9 +5,9 @@ public class Test {
     public static void main(String[] args) {
         System.out.println("Hello and Welcome to REST API Testing using Rest Assured...");
         RestAssured.baseURI = "https://rahulshettyacademy.com";
-        given()
+        given().log().all()
                 .queryParam("key", "qaclick123")
-                .header("ContentType", "application/json")
+                .header("Content-Type", "application/json")
                 .body("{\n" +
                         "  \"location\": {\n" +
                         "    \"lat\": -38.383494,\n" +
