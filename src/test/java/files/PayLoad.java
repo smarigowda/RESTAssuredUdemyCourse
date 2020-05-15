@@ -46,12 +46,19 @@ public class PayLoad {
                 "]\n" +
                 "}";
     }
-    public static String AddBook() {
+    public static String AddBook(String isbn, String aisle) {
         return "{\n" +
                 "    \"name\": \"Learn Appium Automation with Java\",\n" +
-                "    \"isbn\": \"ajnl\",\n" +
-                "    \"aisle\": \"227\",\n" +
+                "    \"isbn\": \"" + isbn + "\",\n" +
+                "    \"aisle\": \"" + aisle + "\",\n" +
                 "    \"author\": \"John foe\"\n" +
+                "}";
+    }
+    public static String DeleteBook(String id) {
+        return "{\n" +
+                " \n" +
+                "\"ID\" : \""+ id +"\"\n" +
+                "\n" +
                 "}";
     }
 }
