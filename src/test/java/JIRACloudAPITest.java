@@ -1,7 +1,5 @@
-import com.sun.org.apache.regexp.internal.RE;
 import io.restassured.RestAssured;
 import io.restassured.authentication.PreemptiveBasicAuthScheme;
-import io.restassured.filter.session.SessionFilter;
 import org.testng.annotations.Test;
 
 public class JIRACloudAPITest {
@@ -34,6 +32,7 @@ public class JIRACloudAPITest {
                     .post("/rest/api/2/issue")
                 .then()
                     .log().all()
+                    .statusCode(201)
                     .extract().response().asString();
 
         System.out.println(response);
