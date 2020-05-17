@@ -1,8 +1,10 @@
+package jiracloud;
+
 import io.restassured.RestAssured;
 import io.restassured.authentication.PreemptiveBasicAuthScheme;
 import org.testng.annotations.Test;
 
-public class JIRACloudAPITest {
+public class CreateAnIssue {
     @Test
     public void CreateIssue() {
         RestAssured.baseURI = "https://santosharakere.atlassian.net";
@@ -21,7 +23,7 @@ public class JIRACloudAPITest {
                             "\t\t\"project\": {\n" +
                             "\t\t\t\"key\": \"RES\"\n" +
                             "\t\t},\n" +
-                            "\t\t\"summary\": \"my Second Bug\",\n" +
+                            "\t\t\"summary\": \"A Bug created using RestAssured framework\",\n" +
                             "\t\t\"description\": \"A Bug logged using REST API\",\n" +
                             "\t\t\"issuetype\": {\n" +
                             "\t\t\t\"name\": \"Bug\"\n" +

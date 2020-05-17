@@ -1,10 +1,12 @@
+package jiracloud;
+
 import io.restassured.RestAssured;
 import io.restassured.authentication.PreemptiveBasicAuthScheme;
 import org.testng.annotations.Test;
 
-public class JIRACloud_AddAComment {
+public class UpdateAComment {
     @Test
-    public void AddAComment() {
+    public void UpdateAComment() {
         RestAssured.baseURI = "https://santosharakere.atlassian.net";
 
         PreemptiveBasicAuthScheme authScheme = new PreemptiveBasicAuthScheme();
@@ -13,15 +15,16 @@ public class JIRACloud_AddAComment {
         RestAssured.authentication = authScheme;
 
         RestAssured
-                .given().log().all()
+                .given()
                     .header("Content-Type", "application/json")
                     .pathParam("issueId", "10000")
+                    .pathParam("commentId", "10003")
                     .body("{\n" +
-                            "  \"body\": \"Comment 2: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget venenatis elit. Duis eu justo eget augue iaculis fermentum. Sed semper quam laoreet nisi egestas at posuere augue semper.\"\n" +
-                            "}")
-                .when().log().all()
-                    .post("/rest/api/2/issue/{issueId}/comment")
+                        "  \"body\": \"Comment updated using REST API, using RestAssured framework\"\n" +
+                        "}")
+                .when().put("/rest/api/2/issue/{issueId}/comment/{commentId}")
                 .then().log().all()
-                    .statusCode(201);
+                    .statusCode(200);
+
     }
 }

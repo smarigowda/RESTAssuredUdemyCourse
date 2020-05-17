@@ -1,8 +1,10 @@
+package jiracloud;
+
 import io.restassured.RestAssured;
 import io.restassured.authentication.PreemptiveBasicAuthScheme;
 import org.testng.annotations.Test;
 
-public class JIRACloud_DeleteAnIssue {
+public class DeleteAnIssue {
     @Test
     public void DeleteAnIssue() {
         RestAssured.baseURI = "https://santosharakere.atlassian.net";
