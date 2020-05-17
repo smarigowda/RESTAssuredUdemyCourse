@@ -1,5 +1,3 @@
-package files;
-
 import io.restassured.RestAssured;
 import io.restassured.authentication.PreemptiveBasicAuthScheme;
 import org.testng.annotations.Test;
@@ -23,6 +21,7 @@ public class JIRACloud_AddAComment {
                             "}")
                 .when().log().all()
                     .post("/rest/api/2/issue/{issueId}/comment")
-                .then().log().all();
+                .then().log().all()
+                    .statusCode(201);
     }
 }
