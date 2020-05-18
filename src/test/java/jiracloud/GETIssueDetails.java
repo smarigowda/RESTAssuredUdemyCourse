@@ -21,6 +21,7 @@ public class GETIssueDetails {
 
         String response = RestAssured
                 .given()
+                    .relaxedHTTPSValidation()
                     .pathParam("issueId", "10000")
                     .queryParam("fields", "comment")
                 .when()
