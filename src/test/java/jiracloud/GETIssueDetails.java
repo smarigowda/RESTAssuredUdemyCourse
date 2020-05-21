@@ -11,15 +11,15 @@ public class GETIssueDetails {
     public void getIssueDetails() {
         RestAssured.baseURI = "https://santosharakere.atlassian.net";
 
-        PreemptiveBasicAuthScheme authScheme = new PreemptiveBasicAuthScheme();
+        var authScheme = new PreemptiveBasicAuthScheme();
         authScheme.setUserName("santosharakere@gmail.com");
         authScheme.setPassword(System.getenv("JIRA_API_TOKEN"));
         RestAssured.authentication = authScheme;
 
-        String expAttachmentId = "10000";
-        String expCommentId = "10003";
+        var expAttachmentId = "10000";
+        var expCommentId = "10003";
 
-        String response = RestAssured
+        var response = RestAssured
                 .given()
                     .relaxedHTTPSValidation()
                     .pathParam("issueId", "10000")
@@ -32,14 +32,14 @@ public class GETIssueDetails {
 
         System.out.println(response);
 
-        JsonPath js = new JsonPath(response);
+        var js = new JsonPath(response);
         int count = js.getInt("fields.comment.comments.size()");
         System.out.println(count);
         for(int i=0; i<count; i++) {
-            String commentId = js.getString(String.format("fields.comment.comments[%d].id", i));
+            var commentId = js.getString(String.format("fields.comment.comments[%d].id", i));
             System.out.println(commentId);
             if(commentId.equals(expCommentId)) {
-                String commentText = js.getString(String.format("fields.comment.comments[%d].body.content[0].content[0].text", i));
+                var commentText = js.getString(String.format("fields.comment.comments[%d].body.content[0].content[0].text", i));
                 System.out.println(commentText);
                 Assert.assertEquals(commentText, "Comment updated using REST API, using RestAssured framework");
             }
