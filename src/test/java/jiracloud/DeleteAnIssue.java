@@ -9,7 +9,7 @@ public class DeleteAnIssue {
     public void DeleteAnIssue() {
         RestAssured.baseURI = "https://santosharakere.atlassian.net";
 
-        PreemptiveBasicAuthScheme authScheme = new PreemptiveBasicAuthScheme();
+        var authScheme = new PreemptiveBasicAuthScheme();
         authScheme.setUserName("santosharakere@gmail.com");
         authScheme.setPassword(System.getenv("JIRA_API_TOKEN"));
         RestAssured.authentication = authScheme;
@@ -17,7 +17,7 @@ public class DeleteAnIssue {
         RestAssured
                 .given()
                     .log().all()
-                    .pathParam("issueId", "10002")
+                    .pathParam("issueId", "10009")
                 .when()
                     .delete("/rest/api/2/issue/{issueId}")
                 .then()

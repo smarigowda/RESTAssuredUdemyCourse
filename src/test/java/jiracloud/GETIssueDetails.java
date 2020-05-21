@@ -16,10 +16,10 @@ public class GETIssueDetails {
         authScheme.setPassword(System.getenv("JIRA_API_TOKEN"));
         RestAssured.authentication = authScheme;
 
-        var expAttachmentId = "10000";
-        var expCommentId = "10003";
+        String expAttachmentId = "10000";
+        String expCommentId = "10003";
 
-        var response = RestAssured
+        String response = RestAssured
                 .given()
                     .relaxedHTTPSValidation()
                     .pathParam("issueId", "10000")
@@ -36,10 +36,10 @@ public class GETIssueDetails {
         int count = js.getInt("fields.comment.comments.size()");
         System.out.println(count);
         for(int i=0; i<count; i++) {
-            var commentId = js.getString(String.format("fields.comment.comments[%d].id", i));
+            String commentId = js.getString(String.format("fields.comment.comments[%d].id", i));
             System.out.println(commentId);
             if(commentId.equals(expCommentId)) {
-                var commentText = js.getString(String.format("fields.comment.comments[%d].body.content[0].content[0].text", i));
+                String commentText = js.getString(String.format("fields.comment.comments[%d].body.content[0].content[0].text", i));
                 System.out.println(commentText);
                 Assert.assertEquals(commentText, "Comment updated using REST API, using RestAssured framework");
             }

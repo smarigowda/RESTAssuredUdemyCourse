@@ -12,7 +12,7 @@ public class AddAnAttachment {
     public void AddAttachment() {
         RestAssured.baseURI = "https://santosharakere.atlassian.net";
 
-        PreemptiveBasicAuthScheme authScheme = new PreemptiveBasicAuthScheme();
+        var authScheme = new PreemptiveBasicAuthScheme();
         authScheme.setUserName("santosharakere@gmail.com");
         authScheme.setPassword(System.getenv("JIRA_API_TOKEN"));
         RestAssured.authentication = authScheme;
