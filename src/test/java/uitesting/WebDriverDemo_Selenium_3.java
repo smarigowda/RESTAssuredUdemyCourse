@@ -6,8 +6,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class WebDriverDemo_Selenium_3 {
     public static void main(String[] args) {
-        // System.setProperty("webdriver.chrome.driver", "/Users/santosh/SAN/Software/chromedriver.83");
-        // no need of manual install
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         String baseUrl = "https://www.google.com";
